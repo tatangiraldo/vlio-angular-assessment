@@ -1,0 +1,40 @@
+<form [formGroup]="taskForm" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label for="taskName">Nombre de la tarea</label>
+      <input id="taskName" class="form-control" formControlName="taskName">
+    </div>
+    
+    <div class="form-group">
+      <label for="dueDate">Fecha límite</label>
+      <input id="dueDate" type="date" class="form-control" formControlName="dueDate">
+    </div>
+  
+    <div formArrayName="people">
+      <div *ngFor="let person of people.controls; let i = index" [formGroupName]="i">
+        <hr>
+        <h4>Persona {{i + 1}}</h4>
+        <div class="form-group">
+          <label for="fullName">Nombre completo</label>
+          <input id="fullName" class="form-control" formControlName="fullName">
+        </div>
+        <div class="form-group">
+          <label for="age">Edad</label>
+          <input id="age" type="number" class="form-control" formControlName="age">
+        </div>
+  
+        <div formArrayName="skills">
+          <div *ngFor="let skill of getSkills(i).controls; let j = index" [formGroupName]="j">
+            <label for="skillName">Habilidad {{j + 1}}</label>
+            <input id="skillName" class="form-control" formControlName="skillName">
+            <button type="button" (click)="removeSkill(i, j)">Eliminar Habilidad</button>
+          </div>
+          <button type="button" (click)="addSkill(i)">Añadir Habilidad</button>
+        </div>
+        <button type="button" (click)="removePerson(i)">Eliminar Persona</button>
+      </div>
+      <button type="button" (click)="addPerson()">Añadir Persona</button>
+    </div>
+  
+    <button type="submit" [disabled]="taskForm.invalid">Guardar Tarea</button>
+  </form>
+  
