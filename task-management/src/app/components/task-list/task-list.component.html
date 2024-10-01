@@ -2,23 +2,34 @@
     <h2>Listado de Tareas</h2>
     <button class="btn btn-primary mb-3" (click)="openNewTaskForm()">Nueva Tarea</button>
     
-    <div>
-      <h4>Tareas Pendientes</h4>
-      <ul class="list-group">
-        <ng-container *ngFor="let task of (tasks$ | async)">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span [ngClass]="{'text-decoration-line-through': task.completed}">
-              {{ task.taskName }} ({{ task.dueDate }})
-            </span>
-            <div>
-              <button class="btn btn-success btn-sm me-2" (click)="toggleTaskCompletion(task)">
-                {{ task.completed ? 'Marcar Pendiente' : 'Marcar Completada' }}
-              </button>
-              <button class="btn btn-danger btn-sm" (click)="deleteTask(task.id)">Eliminar</button>
-            </div>
-          </li>
-        </ng-container>
-      </ul>
-    </div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Mark</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let task of (tasks$ | async)">
+                <td>
+                    <span  [ngClass]="{'text-decoration-line-through': task.completed}">
+                        {{ task.taskName }} ({{ task.dueDate }})
+                    </span>
+                </td>
+                <td>
+                    <span class="btn btn-success btn-sm me-2" (click)="toggleTaskCompletion(task)">
+                        {{ task.completed ? 'Set as Pending' : 'Set as Completed' }}
+                    </span>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm" (click)="deleteTask(task.id)">Delete</button>
+                </td>
+        </tr>
+
+        </tbody>
+    </table>
+
   </div>
   

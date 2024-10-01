@@ -16,7 +16,10 @@ import { TaskFormComponent } from '../task-form/task-form.component';
 export class TaskListComponent {
   tasks$: Observable<Task[]>;
 
-  constructor(private store: Store, private modalService: NgbModal) {
+  constructor(
+      private store: Store, 
+      private modalService: NgbModal) {
+    debugger
     this.tasks$ = this.store.select(selectAllTasks);
   }
 

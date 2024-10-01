@@ -7,7 +7,48 @@ export interface TaskState {
 }
 
 export const initialState: TaskState = {
-  tasks: []
+  tasks: [
+    {
+      id: 1,
+      taskName: 'task 1',
+      completed: false,
+      dueDate: "2024-09-27",
+      people: [
+        {
+          id: 123,
+          fullName: 'Jhonnatan',
+          age: 34,
+          skills: ['PHP', 'C#', 'ANGULAR', 'REACT']
+        },
+        {
+          id: 124,
+          fullName: 'Jhon Doe',
+          age: 30,
+          skills: ['C', 'Javascript']
+        }
+      ]
+    },
+    {
+      id: 2,
+      taskName: 'task 2',
+      completed: false,
+      dueDate: "2024-09-25",
+      people: [
+        {
+          id: 123,
+          fullName: 'Jhonnatan',
+          age: 34,
+          skills: ['PHP', 'C#', 'ANGULAR', 'REACT']
+        },
+        {
+          id: 126,
+          fullName: 'Pepe',
+          age: 30,
+          skills: ['Phuton', 'Git']
+        }
+      ]
+    },
+  ]
 };
 
 const _taskReducer = createReducer(
