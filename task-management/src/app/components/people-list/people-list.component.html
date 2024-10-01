@@ -1,1 +1,21 @@
-<p>people-list works!</p>
+<table class="table" *ngIf="peopleList && peopleList.length > 0; else noPeople">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Skills</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let person of peopleList">
+            <th scope="row"> {{person.fullName}} </th>
+            <td> {{person.age}} </td>
+            <td> {{person.skills.join(', ')}} </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noPeople>
+    <p>No people related.</p>
+  </ng-template>

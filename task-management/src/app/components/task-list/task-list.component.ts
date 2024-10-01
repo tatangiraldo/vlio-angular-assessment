@@ -33,9 +33,11 @@ export class TaskListComponent {
   }
 
 
-  // Método para abrir el modal de nueva tarea
-  openNewTaskForm() {
+  // Open new task modal
+  openNewTaskForm(selectedTask?: Task ) {
+    debugger
     const modalRef = this.modalService.open(TaskFormComponent);
+    modalRef.componentInstance.selectedTask = selectedTask;
     modalRef.componentInstance.close = () => {
       modalRef.close();
     };

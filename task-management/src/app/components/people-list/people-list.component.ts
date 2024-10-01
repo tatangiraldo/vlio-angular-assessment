@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Person } from 'src/app/models/task.model';
+
 
 @Component({
   selector: 'app-people-list',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./people-list.component.css']
 })
 export class PeopleListComponent {
+
+  @Input() peopleList?: Person[] = []
 
 }

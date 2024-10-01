@@ -22,11 +22,14 @@
       <label for="dueDate">Due Date</label>
       <br>
       <ngb-datepicker  
+        #dp
+        formControlName="dueDate"
         class="mt-1"
         (dateSelect)="onDateSelect($event)"
-        #d
         ></ngb-datepicker>
     </div>
+    <hr>
+    <app-people-list [peopleList]="selectedTask?.people" />
     <br>
     <button type="submit" class="btn btn-success float-end mb-3" [disabled]="taskForm.invalid">Add Task</button>
   </form> 

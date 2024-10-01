@@ -12,7 +12,7 @@ export const initialState: TaskState = {
       id: 1,
       taskName: 'task 1',
       completed: false,
-      dueDate: "2024-09-27",
+      dueDate: "2024-10-05",
       people: [
         {
           id: 123,
@@ -32,7 +32,7 @@ export const initialState: TaskState = {
       id: 2,
       taskName: 'task 2',
       completed: false,
-      dueDate: "2024-09-25",
+      dueDate: "2024-10-15",
       people: [
         {
           id: 123,

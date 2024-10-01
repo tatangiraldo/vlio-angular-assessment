@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Task } from 'src/app/models/task.model';
 import { addTask } from 'src/app/store/task.actions';
@@ -12,18 +12,45 @@ import { addTask } from 'src/app/store/task.actions';
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css']
 })
-export class TaskFormComponent {
+export class TaskFormComponent implements OnInit {
   
+  @Input() selectedTask?: Task;
+  
+  @Input() closeModal!: () => void;  
+
   taskForm: FormGroup;
 
-  constructor(private fBuilder: FormBuilder, private store: Store, public activeModal: NgbActiveModal ) {
-    
+  today = inject(NgbCalendar).getToday();
+
+  constructor(  private fBuilder: FormBuilder, 
+                private store: Store, 
+                public activeModal: NgbActiveModal ) {
+
     this.taskForm = this.fBuilder.group({
       taskName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
       dueDate: ['', Validators.required],
     });
     
   }
+
+  ngOnInit() {
+    debugger;
+    if(this.selectedTask){
+      
+      const [year, month, day] = this.selectedTask.dueDate.split('-');
+      
+      this.taskForm.patchValue({
+        taskName: this.selectedTask.taskName,
+        dueDate: { 
+          year: parseInt(year), 
+          month: parseInt(month), 
+          day: parseInt(day.split(' ')[0].trim()) 
+        }
+      })
+    
+    }
+  }
+  
 
   //Set date from datepicker
   onDateSelect = (event: any) => {
