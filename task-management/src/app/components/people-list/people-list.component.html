@@ -1,21 +1,26 @@
-<table class="table" *ngIf="peopleList && peopleList.length > 0; else noPeople">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Age</th>
-        <th scope="col">Skills</th>
-      </tr>
-    </thead>
-    <tbody>
-
-        <tr *ngFor="let person of peopleList">
-            <th scope="row"> {{person.fullName}} </th>
-            <td> {{person.age}} </td>
-            <td> {{person.skills.join(', ')}} </td>
-        </tr>
-    </tbody>
-  </table>
+<div *ngIf="peopleList && peopleList.length > 0; else noPeople">
+    <h4>People related</h4>
+    <table class="table" >
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+            <tr class="pointer" *ngFor="let person of peopleList" (click)="handlePerson(person)">
+                <th> {{person.fullName}} </th>
+                <td> {{person.age}} </td>
+                <td>
+                    <app-skill-list [skills]="person?.skills" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
   <ng-template #noPeople>
-    <p>No people related.</p>
+    <h3>No people related.</h3>
   </ng-template>

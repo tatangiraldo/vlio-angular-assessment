@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title">New Task</h5>
+    <h4 class="modal-title">New Task</h4>
     <button type="button" class="close btn btn-xs btn-default float-end" aria-label="Close" (click)="close()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -31,7 +31,15 @@
     <hr>
     <app-people-list [peopleList]="selectedTask?.people" />
     <br>
-    <button type="submit" class="btn btn-success float-end mb-3" [disabled]="taskForm.invalid">Add Task</button>
+    <button 
+      type="submit" 
+      class="btn btn-success float-end mb-3" 
+      [disabled]="taskForm.invalid"
+      >
+      <span *ngIf="!selectedTask">Add</span>
+      <span *ngIf="selectedTask">Update</span>
+       Task
+    </button>
   </form> 
 </div>
   

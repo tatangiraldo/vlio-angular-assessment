@@ -1,38 +1,34 @@
 <div class="modal-header">
-    <h5 class="modal-title">New Task</h5>
-    <button type="button" class="close" aria-label="Close" (click)="close()">
+    <h5 class="modal-title">Person form</h5>
+    <button type="button" class="close btn btn-xs btn-default float-end" aria-label="Close" (click)="close()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 
 <div class="modal-body">
     <form [formGroup]="personForm" (ngSubmit)="submitForm()">
-
-      
-        <div formArrayName="people">
-          <div>
-            <hr>
-            <h4>Person</h4>
-            <div class="form-group">
-              <label for="fullName">Full Name</label>
-              <input id="fullName" class="form-control" formControlName="fullName">
-            </div>
-            <div class="form-group">
-              <label for="age">Age</label>
-              <input id="age" type="number" class="form-control" formControlName="age">
-            </div>
-      
-            <div formArrayName="skills">
-              <div *ngFor="let skill of getSkills().controls; let j = index" [formGroupName]="j">
-                <label for="skillName">Skill</label>
-                <input id="skillName" class="form-control" formControlName="skillName">
-                <button type="button" (click)="removeSkill(j)">Remove Skill</button>
-              </div>
-              <button type="button" (click)="addSkill()">Add Skill</button>
-            </div>
+        <div>
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input id="fullName" class="form-control" formControlName="fullName">
           </div>
-          <button type="button" [disabled]="personForm.invalid" >Add Person</button>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input id="age" type="number" class="form-control" formControlName="age">
+          </div>
+    
+          <app-skill-list (removeSkillEvent)="removeSkill($event)" [skills]="localSkillList" />
+
         </div>
+        <button 
+          type="submit" 
+          class="btn btn-success float-end mb-3" 
+          [disabled]="personForm.invalid"
+          >
+          <span *ngIf="!selectedPerson">Add</span>
+          <span *ngIf="selectedPerson">Update</span>
+          Person
+        </button>
     </form> 
 </div>
   

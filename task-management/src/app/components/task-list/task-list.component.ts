@@ -35,7 +35,6 @@ export class TaskListComponent {
 
   // Open new task modal
   openNewTaskForm(selectedTask?: Task ) {
-    debugger
     const modalRef = this.modalService.open(TaskFormComponent);
     modalRef.componentInstance.selectedTask = selectedTask;
     modalRef.componentInstance.close = () => {

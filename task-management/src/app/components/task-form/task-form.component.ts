@@ -15,12 +15,10 @@ import { addTask } from 'src/app/store/task.actions';
 export class TaskFormComponent implements OnInit {
   
   @Input() selectedTask?: Task;
-  
-  @Input() closeModal!: () => void;  
 
   taskForm: FormGroup;
 
-  today = inject(NgbCalendar).getToday();
+  //today = inject(NgbCalendar).getToday();
 
   constructor(  private fBuilder: FormBuilder, 
                 private store: Store, 
@@ -34,7 +32,6 @@ export class TaskFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     if(this.selectedTask){
       
       const [year, month, day] = this.selectedTask.dueDate.split('-');

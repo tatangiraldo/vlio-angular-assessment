@@ -12,6 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PeopleListComponent } from './components/people-list/people-list.component';
 import { PersonFormComponent } from './components/person-form/person-form.component';
+import { SkillListComponent } from './components/skill-list/skill-list.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PersonFormComponent } from './components/person-form/person-form.compon
     TaskListComponent,
     PeopleListComponent,
     PersonFormComponent,
+    SkillListComponent,
   ],
   imports: [
     BrowserModule,
