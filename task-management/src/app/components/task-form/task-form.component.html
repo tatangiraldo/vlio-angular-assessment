@@ -29,16 +29,14 @@
         ></ngb-datepicker>
     </div>
     <hr>
-    <app-people-list [peopleList]="selectedTask?.people" />
+    <app-people-list [peopleList]="selectedTask.people" (handlePeople)="handlePeopleList($event)" />
     <br>
     <button 
       type="submit" 
       class="btn btn-success float-end mb-3" 
       [disabled]="taskForm.invalid"
       >
-      <span *ngIf="!selectedTask">Add</span>
-      <span *ngIf="selectedTask">Update</span>
-       Task
+      Save Task
     </button>
   </form> 
 </div>

@@ -16,8 +16,16 @@
             <label for="age">Age</label>
             <input id="age" type="number" class="form-control" formControlName="age">
           </div>
-    
-          <app-skill-list (removeSkillEvent)="removeSkill($event)" [skills]="localSkillList" />
+          
+          <hr>
+          <h4>Skills</h4>
+          <div class="mt-3">
+            <app-skill-list
+              [ableToRemove]="true"
+              (removeSkillEvent)="removeSkill($event)" 
+              [skills]="localSkillList" 
+              />
+          </div>
 
         </div>
         <button 

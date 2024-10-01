@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Person, Task } from 'src/app/models/task.model';
+import { TaskService } from 'src/app/services/task.service';
 import { addTask } from 'src/app/store/task.actions';
 
 
@@ -21,11 +22,13 @@ export class PersonFormComponent implements OnInit{
   localSkillList: string[] = [];
 
   constructor(private fBuilder: FormBuilder, 
-              private store: Store, 
-              public activeModal: NgbActiveModal ) {
+              public activeModal: NgbActiveModal,
+              private taskService: TaskService,
+            ) {
 
     this.personForm = this.fBuilder.group({
-      fullName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
+      id: [],
+      fullName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       age: ['', Validators.required],
       skills: []
     });
@@ -36,10 +39,15 @@ export class PersonFormComponent implements OnInit{
     if(this.selectedPerson){
       this.localSkillList = this.selectedPerson.skills;
       this.personForm.patchValue({
+        id: this.selectedPerson.id,
         fullName: this.selectedPerson.fullName,
         age: this.selectedPerson.age,
         skills: this.selectedPerson.skills
-      })    
+      })
+    }else{
+      this.personForm.patchValue({
+        id: Date.now(),
+      })
     }
   }
 
@@ -56,33 +64,23 @@ export class PersonFormComponent implements OnInit{
     debugger
 
     if (this.personForm.valid) {
-      const newTask: Task = {
-        ...this.personForm.value,
-        id: Date.now(),
-        completed: false
-      };
-      this.store.dispatch(addTask({ task: newTask }));
+      this.close(this.personForm.value);
       this.personForm.reset();
-      this.close();
     }
   }
 
-  close() {
-    this.activeModal.close(); // Cerrar el modal
+  close(formValue?: any) {
+    this.activeModal.close(this.personForm.value);
   }
 
-  
-
-
-
   // People form
-  createPerson(): FormGroup {
+  /*createPerson(): FormGroup {
     return this.fBuilder.group({
       fullName: ['', [Validators.required, Validators.minLength(5)]],
       age: ['', [Validators.required, Validators.min(18)]],
       skills: this.fBuilder.array([this.createSkill()])
     });
-  }
+  }*/
 
   // Register form to skills
   createSkill(): FormGroup {

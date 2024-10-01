@@ -1,3 +1,8 @@
+<span 
+    (click)="handlePerson()"
+    class="btn btn-primary btn-sm float-end">
+    Add Person
+</span>
 <div *ngIf="peopleList && peopleList.length > 0; else noPeople">
     <h4>People related</h4>
     <table class="table" >
@@ -21,6 +26,6 @@
     </table>
 </div>
 
-  <ng-template #noPeople>
+<ng-template #noPeople>
     <h3>No people related.</h3>
-  </ng-template>
+</ng-template>

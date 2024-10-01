@@ -16,7 +16,7 @@
       <tr *ngFor="let task of tasks$ | async">
         <td>
           <span class="pointer" [ngClass]="{ 'text-decoration-line-through': task.completed }" (click)="openNewTaskForm(task)">
-            {{ task.taskName | titlecase }} ({{ task.dueDate | date }})
+            {{ task.taskName | titlecase }} ({{ task.dueDate.year }}-{{task.dueDate.month}}-{{task.dueDate.day}})
           </span>
         </td>
         <td>
