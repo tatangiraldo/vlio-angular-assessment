@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { taskReducer } from './store/task.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retiene los últimos 25 estados
     }),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

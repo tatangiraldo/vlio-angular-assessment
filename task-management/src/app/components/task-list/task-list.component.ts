@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import { Task } from 'src/app/models/task.model';
 import { deleteTask, updateTask } from 'src/app/store/task.actions';
 import { selectAllTasks } from 'src/app/store/task.selectors';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TaskFormComponent } from '../task-form/task-form.component';
+
+
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -12,17 +16,30 @@ import { selectAllTasks } from 'src/app/store/task.selectors';
 export class TaskListComponent {
   tasks$: Observable<Task[]>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private modalService: NgbModal) {
     this.tasks$ = this.store.select(selectAllTasks);
   }
 
-  // Método para marcar una tarea como completada
+  // Set task as completed
   toggleTaskCompletion(task: Task) {
     this.store.dispatch(updateTask({ taskId: task.id, changes: { completed: !task.completed } }));
   }
 
-  // Método para eliminar una tarea
+  // Delete task
   deleteTask(taskId: number) {
     this.store.dispatch(deleteTask({ taskId }));
+  }
+
+
+  // Método para abrir el modal de nueva tarea
+  openNewTaskForm() {
+    const modalRef = this.modalService.open(TaskFormComponent);
+    modalRef.componentInstance.close = () => {
+      modalRef.close();
+    };
+  }
+
+  closeTaskModal() {
+    debugger
   }
 }

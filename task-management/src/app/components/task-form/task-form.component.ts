@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Task } from 'src/app/models/task.model';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
+import { Task } from 'src/app/models/task.model';
 import { addTask } from 'src/app/store/task.actions';
+
 
 
 @Component({
@@ -14,7 +16,7 @@ export class TaskFormComponent {
   
   taskForm: FormGroup;
 
-  constructor(private fBuilder: FormBuilder, private store: Store) {
+  constructor(private fBuilder: FormBuilder, private store: Store, public activeModal: NgbActiveModal ) {
     this.taskForm = this.fBuilder.group({
       taskName: ['', [Validators.required, Validators.minLength(5)]],
       dueDate: ['', Validators.required],
@@ -45,11 +47,13 @@ export class TaskFormComponent {
 
   // Add person
   addPerson() {
+    debugger
     this.people.push(this.createPerson());
   }
 
   // Delete person
   removePerson(index: number) {
+    debugger
     this.people.removeAt(index);
   }
 
@@ -60,16 +64,20 @@ export class TaskFormComponent {
 
   // add person's skill
   addSkill(personIndex: number) {
+    debugger
     this.getSkills(personIndex).push(this.createSkill());
   }
 
   // remove person's skill
   removeSkill(personIndex: number, skillIndex: number) {
+    debugger
     this.getSkills(personIndex).removeAt(skillIndex);
   }
 
   // Execute form
   submitForm() {
+    debugger
+
     if (this.taskForm.valid) {
       const newTask: Task = {
         ...this.taskForm.value,
@@ -78,6 +86,11 @@ export class TaskFormComponent {
       };
       this.store.dispatch(addTask({ task: newTask }));
       this.taskForm.reset();
+      this.close();
     }
+  }
+
+  close() {
+    this.activeModal.close(); // Cerrar el modal
   }
 }
