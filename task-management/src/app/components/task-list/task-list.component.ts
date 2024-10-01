@@ -19,7 +19,6 @@ export class TaskListComponent {
   constructor(
       private store: Store, 
       private modalService: NgbModal) {
-    debugger
     this.tasks$ = this.store.select(selectAllTasks);
   }
 

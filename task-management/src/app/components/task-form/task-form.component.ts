@@ -17,67 +17,24 @@ export class TaskFormComponent {
   taskForm: FormGroup;
 
   constructor(private fBuilder: FormBuilder, private store: Store, public activeModal: NgbActiveModal ) {
+    
     this.taskForm = this.fBuilder.group({
-      taskName: ['', [Validators.required, Validators.minLength(5)]],
+      taskName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
       dueDate: ['', Validators.required],
-      people: this.fBuilder.array([this.createPerson()])
     });
+    
   }
 
-  // People form
-  createPerson(): FormGroup {
-    return this.fBuilder.group({
-      fullName: ['', [Validators.required, Validators.minLength(5)]],
-      age: ['', [Validators.required, Validators.min(18)]],
-      skills: this.fBuilder.array([this.createSkill()])
+  //Set date from datepicker
+  onDateSelect = (event: any) => {
+    this.taskForm.patchValue({
+      dueDate: `${event.year}-${event.month}-${event.day}`,
     });
-  }
-
-  // Register form to skills
-  createSkill(): FormGroup {
-    return this.fBuilder.group({
-      skillName: ['', Validators.required]
-    });
-  }
-
-  // Get all people
-  get people(): FormArray {
-    return this.taskForm.get('people') as FormArray;
-  }
-
-  // Add person
-  addPerson() {
-    debugger
-    this.people.push(this.createPerson());
-  }
-
-  // Delete person
-  removePerson(index: number) {
-    debugger
-    this.people.removeAt(index);
-  }
-
-  // Get skills
-  getSkills(personIndex: number): FormArray {
-    return this.people.at(personIndex).get('skills') as FormArray;
-  }
-
-  // add person's skill
-  addSkill(personIndex: number) {
-    debugger
-    this.getSkills(personIndex).push(this.createSkill());
-  }
-
-  // remove person's skill
-  removeSkill(personIndex: number, skillIndex: number) {
-    debugger
-    this.getSkills(personIndex).removeAt(skillIndex);
   }
 
   // Execute form
   submitForm() {
     debugger
-
     if (this.taskForm.valid) {
       const newTask: Task = {
         ...this.taskForm.value,
@@ -90,7 +47,8 @@ export class TaskFormComponent {
     }
   }
 
+  //Close modal
   close() {
-    this.activeModal.close(); // Cerrar el modal
+    this.activeModal.close();
   }
 }

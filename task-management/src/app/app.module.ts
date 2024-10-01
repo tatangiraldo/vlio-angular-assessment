@@ -10,12 +10,16 @@ import { StoreModule } from '@ngrx/store';
 import { taskReducer } from './store/task.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PeopleListComponent } from './components/people-list/people-list.component';
+import { PersonFormComponent } from './components/person-form/person-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskFormComponent,
     TaskListComponent,
+    PeopleListComponent,
+    PersonFormComponent,
   ],
   imports: [
     BrowserModule,
