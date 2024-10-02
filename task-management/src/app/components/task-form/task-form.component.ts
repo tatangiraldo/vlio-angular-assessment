@@ -48,10 +48,10 @@ export class TaskFormComponent implements OnInit {
   // Execute form
   submitForm() {
     if (this.taskForm.valid) {
-
+      debugger
       const newTask: Task = {
         ...this.taskForm.value,
-        id: this.selectedTask.id,
+        id: (this.selectedTask.id > 0 ) ? this.selectedTask.id : Date.now() ,
         completed: false,
         people: this.selectedTask.people
       };
