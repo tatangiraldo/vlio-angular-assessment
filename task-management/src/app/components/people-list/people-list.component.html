@@ -17,6 +17,7 @@
             <th scope="col">Name</th>
             <th scope="col">Age</th>
             <th scope="col">Skills</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +27,13 @@
                 <td> {{person.age}} </td>
                 <td>
                     <app-skill-list [skills]="person?.skills" />
+                </td>
+                <td> 
+                    <span 
+                        (click)="removePerson(person)"
+                        class="badge bg-danger">
+                        Remove
+                    </span> 
                 </td>
             </tr>
         </tbody>

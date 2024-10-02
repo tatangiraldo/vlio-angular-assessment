@@ -11,10 +11,15 @@ export class PeopleListComponent {
 
   @Input() peopleList?: Person[] = [];
   @Output() handlePeople = new EventEmitter<Person>();
+  @Output() removePersonEmit = new EventEmitter<Person>();
   editMode: boolean = false;
   showErrorMessage: string = ''
 
   constructor( private modalService: NgbModal){}
+
+  removePerson(person?: Person){
+    this.removePersonEmit.emit(person);
+  }
 
   // Open person modal
   handlePerson(person?: Person){

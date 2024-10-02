@@ -107,4 +107,18 @@ export class TaskFormComponent implements OnInit {
       };
     }
   }
+
+  removePerson(person?: any){
+    if(person){
+      let tmpList = [... this.selectedTask?.people ?? []]
+
+      tmpList = tmpList?.filter(item => item.id !== person.id);
+
+      //Extend property to have fresh values
+      this.selectedTask = {
+        ...this.selectedTask, 
+        people: [...tmpList]
+      };
+    }
+  }
 }

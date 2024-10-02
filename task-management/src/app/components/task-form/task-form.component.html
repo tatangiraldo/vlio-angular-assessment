@@ -30,7 +30,10 @@
     </div>
     <hr>
 
-    <app-people-list [peopleList]="selectedTask.people" (handlePeople)="handlePeopleList($event)" />
+    <app-people-list 
+      [peopleList]="selectedTask.people" 
+      (handlePeople)="handlePeopleList($event)"
+      (removePersonEmit)="removePerson($event)"  />
 
     
     <button 
