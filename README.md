@@ -1,17 +1,17 @@
-# velaio-angular-assessment
+- velaio-angular-assessment
 Tech assessment to velaio role
 
-# IMPORTANT:  After clone repository:
+- IMPORTANT:  After clone repository:
 cd vlio-angular-assessment/task-management/
 npm i
 
-# RUN APP:
+- RUN APP:
 ng serve
 
-# Run unit test:
+- Run unit test:
 ng test
 
-# If you have problems installing components
+- If you have problems installing components
 1 - npm i @angular/cli@16.2.16
 2 - ng new task-management
 3 - npm install bootstrap
