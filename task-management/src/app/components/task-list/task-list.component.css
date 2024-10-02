@@ -14,3 +14,13 @@
   background-color: #fff;
   color: #000;
 }
+
+/* Pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+  .xs-100{
+    width: 100%;
+    float: left;
+    margin-right: 0 !important;
+     margin-left: 0 !important;
+  }
+}

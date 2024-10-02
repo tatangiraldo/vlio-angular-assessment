@@ -1,10 +1,10 @@
 <div class="container mt-4">
   <h2>Task List</h2>
 
-  <div class="d-inline-block mb-3 float-end" ngbDropdown #myDrop="ngbDropdown">
+  <div class="d-inline-block mb-3 float-end xs-100" ngbDropdown #myDrop="ngbDropdown">
     <button
       type="button"
-      class="btn btn-outline-primary me-2"
+      class="btn btn-outline-primary me-2 xs-100"
       id="dropdownManual"
       ngbDropdownAnchor
       (focus)="myDrop.open()"
@@ -18,16 +18,25 @@
     </div>
   </div>
 
-  <select 
-    *ngIf="!tasksFromApi"
-    (change)="onChange($event)"
-    class="form-select mb-3 float-end mx-3" 
-    aria-label="Filter tasks">
-    <option selected>Filter Tasks</option>
-    <option value={{states.completed}}>Completed</option>
-    <option value={{states.pending}}>Pending</option>
-    <option value={{states.all}}>See All</option>
-  </select>
+  <div class="d-inline-block mb-3 float-end xs-100" *ngIf="!tasksFromApi" ngbDropdown #myDrop="ngbDropdown">
+    <button
+      type="button"
+      class="btn btn-outline-primary me-2 xs-100"
+      id="dropdownManual"
+      ngbDropdownAnchor
+      (focus)="myDrop.open()"
+    >
+      Filter Tasks
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+      <button ngbDropdownItem (click)="filterByStatus(states.completed)">Completed</button>
+      <button ngbDropdownItem (click)="filterByStatus(states.pending)">Pending</button>
+      <button ngbDropdownItem (click)="filterByStatus(states.all)">All</button>
+    </div>
+  </div>
+
+
+  <p class="float-start w-100 text-primary">Showing <b> {{stateSelected}} </b> tasks </p>
 
   <table class="table table-bordered" >
     <thead>

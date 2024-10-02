@@ -40,7 +40,7 @@
           type="btn" 
           (click)="submitForm()"
           class="btn btn-primary float-end mt-3 mb-3 mx-3" 
-          [disabled]="personForm.invalid"
+          [disabled]="personForm.invalid || localSkillList.length == 0"
           >
           <span *ngIf="!selectedPerson">Add</span>
           <span *ngIf="selectedPerson">Update</span>

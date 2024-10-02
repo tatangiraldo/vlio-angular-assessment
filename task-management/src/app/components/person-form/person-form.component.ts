@@ -28,10 +28,9 @@ export class PersonFormComponent implements OnInit{
             ) {
 
     this.personForm = this.fBuilder.group({
-      id: [],
+      id: 0,
       fullName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      age: ['', Validators.required],
-      skills: []
+      age: ['', Validators.required]
     });
 
   }
@@ -62,7 +61,6 @@ export class PersonFormComponent implements OnInit{
 
   // Execute form
   submitForm(event?: Event) {
-    debugger
     if( this.localSkillList.length > 0 ){
       if (this.personForm.valid) {
         this.close({
@@ -77,35 +75,16 @@ export class PersonFormComponent implements OnInit{
   }
 
   close(formValue?: any) {
-    debugger
     this.activeModal.close(this.personForm.value);
   }
 
-  newSkillEmit(e: any){
-    debugger;
+  newSkillEmit(newSkill: any){
 
-    if(!this.localSkillList.some( (skill) => skill == e )){
+    if(newSkill.length > 0 && !this.localSkillList.some( (skill) => skill == newSkill )){
       let tmpList = [... this.localSkillList];
-      tmpList.push(e);
+      tmpList.push(newSkill);
       this.localSkillList = [...tmpList]
     }
     
   }
-  // People form
-  /*createPerson(): FormGroup {
-    return this.fBuilder.group({
-      fullName: ['', [Validators.required, Validators.minLength(5)]],
-      age: ['', [Validators.required, Validators.min(18)]],
-      skills: this.fBuilder.array([this.createSkill()])
-    });
-  }*/
-
-  // Register form to skills
-  createSkill(): FormGroup {
-    return this.fBuilder.group({
-      skillName: ['', Validators.required]
-    });
-  }
-
-
 }

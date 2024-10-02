@@ -20,6 +20,7 @@ export class TaskListComponent {
   tasks$: Observable<Task[]>;
   tasksFromApi: boolean = false;
 
+  stateSelected: string = '';
   states = {
     all: 'all',
     completed: 'completed',
@@ -32,6 +33,7 @@ export class TaskListComponent {
       private taskProviderService: TaskProviderService) {
     
         this.tasks$ = this.store.select(selectAllTasks);
+        this.stateSelected = this.states.all;
   }
 
   // Set task as completed
@@ -99,21 +101,20 @@ export class TaskListComponent {
     };
   }
 
-  onChange(event: any) {
-    switch (event.target.value) {
-      case this.states.completed:
-        this.tasks$ = this.store.select(selectCompletedTasks);        
-        break;
-      case this.states.pending:
-        this.tasks$ = this.store.select(selectPendingTasks);
-        break
-      default:
-        this.tasks$ = this.store.select(selectAllTasks);
-        break;
-    }
+  filterByStatus(state: any) {
+    if(state.length > 0)
+      this.stateSelected = state;
+      switch (state) {
+        case this.states.completed:
+          this.tasks$ = this.store.select(selectCompletedTasks);        
+          break;
+        case this.states.pending:
+          this.tasks$ = this.store.select(selectPendingTasks);
+          break
+        default:
+          this.tasks$ = this.store.select(selectAllTasks);
+          break;
+      }
   }
 
-  closeTaskModal() {
-    debugger
-  }
 }
