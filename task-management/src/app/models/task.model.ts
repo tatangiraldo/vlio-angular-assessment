@@ -7,7 +7,7 @@ export interface Person {
 
 export class Task {
   id: number;
-  taskName: string;
+  title: string;
   dueDate: {
     day: number;
     month: number;
@@ -16,9 +16,9 @@ export class Task {
   completed: boolean;
   people: Person[];
 
-  constructor(id: number = 0, taskName: string = '', completed: boolean = false, dueDate: any = {}, people: Person[] = []) {
+  constructor(id: number = 0, title: string = '', completed: boolean = false, dueDate: any = {}, people: Person[] = []) {
     this.id = id;
-    this.taskName = taskName;
+    this.title = title;
     this.completed = completed;
     this.dueDate = dueDate;
     this.people = people;

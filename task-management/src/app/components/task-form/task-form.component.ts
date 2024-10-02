@@ -23,7 +23,7 @@ export class TaskFormComponent implements OnInit {
                 public activeModal: NgbActiveModal ) {
   
     this.taskForm = this.fBuilder.group({
-      taskName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
+      title: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
       dueDate: ['', Validators.required],
     });
 
@@ -32,7 +32,7 @@ export class TaskFormComponent implements OnInit {
   ngOnInit() {
     if(this.selectedTask){      
       this.taskForm.patchValue({
-        taskName: this.selectedTask.taskName,
+        title: this.selectedTask.title,
         dueDate: this.selectedTask.dueDate
       })
       this.editMode = true;

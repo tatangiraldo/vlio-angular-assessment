@@ -1,12 +1,27 @@
 <div class="container mt-4">
   <h2>Task List</h2>
-  <button class="btn btn-secondary btn-sm mb-3 float-end" (click)="openNewTaskForm()">
-    New Task
-  </button>
+
+  <div class="d-inline-block mb-3 float-end" ngbDropdown #myDrop="ngbDropdown">
+    <button
+      type="button"
+      class="btn btn-outline-primary me-2"
+      id="dropdownManual"
+      ngbDropdownAnchor
+      (focus)="myDrop.open()"
+    >
+      Options
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+      <button *ngIf="!tasksFromApi" ngbDropdownItem (click)="openNewTaskForm()">New Task</button>
+      <button ngbDropdownItem (click)="getTaskApi()">Get tasks from API</button>
+      <button ngbDropdownItem (click)="getTaskStore()">Get tasks from STORE</button>
+    </div>
+  </div>
 
   <select 
+    *ngIf="!tasksFromApi"
     (change)="onChange($event)"
-    class="form-select mb-3 float-end" 
+    class="form-select mb-3 float-end mx-3" 
     aria-label="Filter tasks">
     <option selected>Filter Tasks</option>
     <option value={{states.completed}}>Completed</option>
@@ -14,7 +29,7 @@
     <option value={{states.all}}>See All</option>
   </select>
 
-  <table class="table table-bordered">
+  <table class="table table-bordered" >
     <thead>
       <tr>
         <th scope="col">Name</th>
@@ -24,18 +39,20 @@
     </thead>
     <tbody>
       <tr *ngFor="let task of tasks$ | async">
-        <td>
+        <td (click)="openNewTaskForm(task)" >
           <span
-              class="pointer" 
-              [ngClass]="{ 'text-decoration-line-through': task.completed }" 
-              (click)="openNewTaskForm(task)"
+              class="pointer"               
+              [ngClass]="{ 'text-decoration-line-through': task.completed, 'cursor-not-allowed' : tasksFromApi }"              
               >
-            {{ task.taskName | titlecase }} ({{ task.dueDate.year }}-{{task.dueDate.month}}-{{task.dueDate.day}})
+            {{ task.title | titlecase }} 
+            <span *ngIf="task.dueDate">
+              ({{ task.dueDate.year }}-{{task.dueDate.month}}-{{task.dueDate.day}})
+            </span>              
           </span>
         </td>
         <td>
           <span
-            [ngClass]="{ 'badge bg-warning text-white': !task.completed }"
+            [ngClass]="{ 'badge bg-warning text-white': !task.completed, 'cursor-not-allowed' : tasksFromApi }"
             class="text-success me-2 pointer"
             (click)="toggleTaskCompletion(task)"
           >
@@ -43,7 +60,11 @@
           </span>
         </td>
         <td>
-          <span class="badge bg-danger pointer" (click)="openConfirm(task)">
+          <span 
+            class="badge bg-danger pointer" 
+            (click)="openConfirm(task)"
+            [ngClass]="{ 'cursor-not-allowed' : tasksFromApi }"
+            >
             Delete
           </span>
         </td>

@@ -8,13 +8,13 @@
 <div class="modal-body">
   <form [formGroup]="taskForm" (ngSubmit)="submitForm()">
     <div class="form-group">
-      <label for="taskName">Name</label>
-      <input id="taskName" class="form-control" formControlName="taskName">
+      <label for="title">Name</label>
+      <input id="title" class="form-control" formControlName="title">
 
-      <div *ngIf="taskForm.get('taskName')?.touched && taskForm.get('taskName')?.invalid" class="text-danger">
-        <div *ngIf="taskForm.get('taskName')?.errors?.['required']">Field required.</div>
-        <div *ngIf="taskForm.get('taskName')?.errors?.['minlength']">At least 5 characters.</div>
-        <div *ngIf="taskForm.get('taskName')?.errors?.['maxlength']">Max 10 characters.</div>
+      <div *ngIf="taskForm.get('title')?.touched && taskForm.get('title')?.invalid" class="text-danger">
+        <div *ngIf="taskForm.get('title')?.errors?.['required']">Field required.</div>
+        <div *ngIf="taskForm.get('title')?.errors?.['minlength']">At least 5 characters.</div>
+        <div *ngIf="taskForm.get('title')?.errors?.['maxlength']">Max 10 characters.</div>
       </div>
 
     </div>        

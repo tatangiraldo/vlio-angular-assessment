@@ -40,7 +40,7 @@ describe('TaskFormComponent', () => {
     debugger;
     const newTask: Task = { 
       id: 1, 
-      taskName: 'New Task', 
+      title: 'New Task', 
       completed: false, 
       people: [],
       dueDate: {
@@ -56,7 +56,7 @@ describe('TaskFormComponent', () => {
   it('this must dispatch action updateTask when updateTask mthod is executed', () => {
     const task: Task = { 
       id: 1, 
-      taskName: 'New Task', 
+      title: 'New Task', 
       completed: false, 
       people: [],
       dueDate: {

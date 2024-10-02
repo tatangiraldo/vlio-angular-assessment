@@ -17,6 +17,7 @@ import { SkillInputComponent } from './skill-input/skill-input.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
     }),
     NgbModule,
     FormsModule,
-    NgbDatepickerModule 
+    NgbDatepickerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

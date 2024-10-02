@@ -26,7 +26,7 @@ describe('TaskListComponent', () => {
     
     const newTask: Task = { 
       id: 1, 
-      taskName: 'New Task', 
+      title: 'New Task', 
       completed: false, 
       people: [],
       dueDate: {

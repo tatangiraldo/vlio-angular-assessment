@@ -1,5 +1,16 @@
 .form-select{
   width: 150px;
-  height: 30px;
-  padding: 3px 10px;
+  height: 38px;
+  padding: 0px 10px;
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+.form-select:hover{
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.form-select:hover option{
+  background-color: #fff;
+  color: #000;
 }

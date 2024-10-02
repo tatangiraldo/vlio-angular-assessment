@@ -7,14 +7,18 @@ import { selectAllTasks, selectCompletedTasks, selectPendingTasks } from 'src/ap
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { TaskProviderService } from 'src/app/services/task-provider.service';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
+
 export class TaskListComponent {
+
   tasks$: Observable<Task[]>;
+  tasksFromApi: boolean = false;
 
   states = {
     all: 'all',
@@ -24,13 +28,35 @@ export class TaskListComponent {
 
   constructor(
       private store: Store, 
-      private modalService: NgbModal) {
-    this.tasks$ = this.store.select(selectAllTasks);
+      private modalService: NgbModal,
+      private taskProviderService: TaskProviderService) {
+    
+        this.tasks$ = this.store.select(selectAllTasks);
   }
 
   // Set task as completed
   toggleTaskCompletion(task: Task) {
+    if(this.tasksFromApi){
+      return;
+    }
     this.store.dispatch(updateTask({ taskId: task.id, changes: { completed: !task.completed } }));
+  }
+
+  //Get tasks from api:
+  getTaskApi(){
+    //  Debug line to inspect data structure
+    /*this.taskProviderService.getTasks().subscribe((data) => {
+      this.tasks$ = data;
+    });*/
+
+    this.tasks$ = this.taskProviderService.getTasks();
+    this.tasksFromApi = true;
+  }
+
+  //Get data from store:
+  getTaskStore(){
+    this.tasks$ = this.store.select(selectAllTasks);
+    this.tasksFromApi = false;
   }
 
   // Delete task
@@ -39,9 +65,14 @@ export class TaskListComponent {
   }
 
   openConfirm(task: Task) {
+
+    if(this.tasksFromApi){
+      return;
+    }
+
     const modalRef = this.modalService.open(ConfirmModalComponent);
     
-    modalRef.componentInstance.message = `¿Remove task ${task.taskName} ?`
+    modalRef.componentInstance.message = `¿Remove task ${task.title} ?`
 
     modalRef.result.then(
       (result) => {
@@ -56,6 +87,11 @@ export class TaskListComponent {
 
   // Open new task modal
   openNewTaskForm(selectedTask?: Task ) {
+
+    if(this.tasksFromApi){
+      return;
+    }
+
     const modalRef = this.modalService.open(TaskFormComponent);
     modalRef.componentInstance.selectedTask = selectedTask;
     modalRef.componentInstance.close = () => {

@@ -13,7 +13,7 @@
     tasks: [
       {
         id: Date.now(),
-        taskName: 'task 1',
+        title: 'task 1',
         completed: false,
         dueDate: {
           day: 15,
@@ -37,7 +37,7 @@
       },
       {
         id: Date.now()+3,
-        taskName: 'task 2',
+        title: 'task 2',
         completed: false,
         dueDate: {
           day: 7,
