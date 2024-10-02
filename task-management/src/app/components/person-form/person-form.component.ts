@@ -58,6 +58,7 @@ export class PersonFormComponent implements OnInit{
 
   // Execute form
   submitForm(event?: Event) {
+    debugger
     if( this.localSkillList.length > 0 ){
       if (this.personForm.valid) {
         this.close({

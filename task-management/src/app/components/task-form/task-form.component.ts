@@ -82,6 +82,7 @@ export class TaskFormComponent implements OnInit {
 
   //Add or optate people from people list
   handlePeopleList(person?: any){
+    debugger
     if(person){
       let tmpList = [... this.selectedTask?.people ?? []]
 
@@ -90,7 +91,7 @@ export class TaskFormComponent implements OnInit {
         tmpList = tmpList?.map(p => {
           if (p.id === person.id) {
             return { 
-              ...p,
+              ...person,
               skills: [... person.skills]
             }; 
           }

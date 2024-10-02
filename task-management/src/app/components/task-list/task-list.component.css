@@ -14,7 +14,10 @@
   background-color: #fff;
   color: #000;
 }
-
+.task-list{
+  max-width: 900px;
+  margin: auto;
+}
 /* Pantallas muy pequeñas (móviles) */
 @media (max-width: 480px) {
   .xs-100{

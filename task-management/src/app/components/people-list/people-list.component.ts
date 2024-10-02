@@ -34,7 +34,9 @@ export class PeopleListComponent {
 
       if(personFromModal){
 
-        const personExists = this.peopleList?.some(p => p.fullName.toLocaleLowerCase().trim() === personFromModal.fullName.toLocaleLowerCase().trim());
+        const personExists = this.peopleList?.some(
+            p => p.fullName.toLocaleLowerCase().trim() === personFromModal.fullName.toLocaleLowerCase().trim());
+            
         if(personExists && !this.editMode){
           this.showErrorMessage = 'Person already exist';
         }else{
