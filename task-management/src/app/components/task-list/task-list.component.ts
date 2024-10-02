@@ -38,7 +38,6 @@ export class TaskListComponent {
 
   // Set task as completed
   toggleTaskCompletion(task: Task) {
-    debugger
     if(this.tasksFromApi){
       return;
     }

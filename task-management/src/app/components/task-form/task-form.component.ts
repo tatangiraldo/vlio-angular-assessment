@@ -48,7 +48,6 @@ export class TaskFormComponent implements OnInit {
   // Execute form
   submitForm() {
     if (this.taskForm.valid) {
-      debugger
       const newTask: Task = {
         ...this.taskForm.value,
         id: (this.selectedTask.id > 0 ) ? this.selectedTask.id : Date.now() ,
@@ -82,7 +81,6 @@ export class TaskFormComponent implements OnInit {
 
   //Add or optate people from people list
   handlePeopleList(person?: any){
-    debugger
     if(person){
       let tmpList = [... this.selectedTask?.people ?? []]
 
