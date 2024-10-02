@@ -12,7 +12,7 @@
   export const initialState: TaskState = {
     tasks: [
       {
-        id: 1,
+        id: Date.now(),
         taskName: 'task 1',
         completed: false,
         dueDate: {
@@ -22,13 +22,13 @@
         },
         people: [
           {
-            id: 123,
+            id: Date.now()+1,
             fullName: 'Jhonnatan',
             age: 34,
             skills: ['PHP', 'C#', 'ANGULAR', 'REACT']
           },
           {
-            id: 124,
+            id: Date.now()+2,
             fullName: 'Jhon Doe',
             age: 30,
             skills: ['C', 'Javascript']
@@ -36,7 +36,7 @@
         ]
       },
       {
-        id: 2,
+        id: Date.now()+3,
         taskName: 'task 2',
         completed: false,
         dueDate: {
@@ -46,16 +46,16 @@
         },
         people: [
           {
-            id: 123,
+            id: Date.now()+4,
             fullName: 'Jhonnatan',
             age: 34,
             skills: ['PHP', 'C#', 'ANGULAR', 'REACT']
           },
           {
-            id: 126,
-            fullName: 'Pepe',
+            id: Date.now()+5,
+            fullName: 'Smith Doe',
             age: 30,
-            skills: ['Phuton', 'Git']
+            skills: ['Phyton', 'Git']
           }
         ]
       },

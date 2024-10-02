@@ -20,6 +20,7 @@ export class PersonFormComponent implements OnInit{
   personForm: FormGroup;
   personIndex = 0;
   localSkillList: string[] = [];
+  showErrorMessage: string = ''
 
   constructor(private fBuilder: FormBuilder, 
               public activeModal: NgbActiveModal,
@@ -28,7 +29,7 @@ export class PersonFormComponent implements OnInit{
 
     this.personForm = this.fBuilder.group({
       id: [],
-      fullName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      fullName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       age: ['', Validators.required],
       skills: []
     });
@@ -60,19 +61,36 @@ export class PersonFormComponent implements OnInit{
   }
 
   // Execute form
-  submitForm() {
+  submitForm(event?: Event) {
     debugger
-
-    if (this.personForm.valid) {
-      this.close(this.personForm.value);
-      this.personForm.reset();
+    if( this.localSkillList.length > 0 ){
+      if (this.personForm.valid) {
+        this.close({
+                ... this.personForm.value,
+                skills: this.localSkillList
+              } );
+        this.personForm.reset();
+      }
+    }else{
+      this.showErrorMessage = 'You must add at least one skill';
     }
   }
 
   close(formValue?: any) {
+    debugger
     this.activeModal.close(this.personForm.value);
   }
 
+  newSkillEmit(e: any){
+    debugger;
+
+    if(!this.localSkillList.some( (skill) => skill == e )){
+      let tmpList = [... this.localSkillList];
+      tmpList.push(e);
+      this.localSkillList = [...tmpList]
+    }
+    
+  }
   // People form
   /*createPerson(): FormGroup {
     return this.fBuilder.group({

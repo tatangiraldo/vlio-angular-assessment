@@ -4,9 +4,9 @@
         ngbTooltip={{tooltipMss}}
         *ngFor="let skill of skills  let j = index"
         (click)="removeSkill(skill)"
-        class="btn btn-sm btn-primary ms-1 mb-1" 
+        class="badge bg-success ms-1 mb-1 cursor-help" 
         >
-        {{skill}} 
+        {{skill | uppercase}} 
     </span>
 </div>
 <ng-template #noSkills>

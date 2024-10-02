@@ -13,7 +13,8 @@ export class PeopleListComponent implements OnInit{
 
   @Input() peopleList?: Person[] = [];
   @Output() handlePeople = new EventEmitter<Person>();
-
+  editMode: boolean = false;
+  showErrorMessage: string = ''
 
   constructor( private modalService: NgbModal){}
 
@@ -27,6 +28,8 @@ export class PeopleListComponent implements OnInit{
   // Open person modal
   handlePerson(person?: Person){
 
+    this.editMode = (person) ? true : false;
+
     const modalRef = this.modalService.open(PersonFormComponent);
     modalRef.componentInstance.selectedPerson = person;
 
@@ -35,6 +38,12 @@ export class PeopleListComponent implements OnInit{
 
       if(personFromModal){
 
+        const personExists = this.peopleList?.some(p => p.fullName.toLocaleLowerCase().trim() === personFromModal.fullName.toLocaleLowerCase().trim());
+        if(personExists && !this.editMode){
+          this.showErrorMessage = 'Person already exist';
+        }else{
+          this.handlePeople.emit(personFromModal);
+        }
         /*let objCopy = this.peopleList;
 
         const personExists = objCopy?.some(person => person.id === personFromModal.id);
@@ -51,10 +60,10 @@ export class PeopleListComponent implements OnInit{
 
         }else{
           objCopy?.push(personFromModal);
-        }        
-
-        this.peopleList = objCopy;*/
-        this.handlePeople.emit(personFromModal);
+        }*/
+        //this.peopleList = objCopy;
+        
+        
       }
       modalRef.close();
     };

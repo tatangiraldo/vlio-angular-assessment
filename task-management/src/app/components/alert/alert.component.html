@@ -1,0 +1,7 @@
+<ngb-alert 
+    [type]="'danger'" 
+    *ngIf="showErrorMessage"
+    (closed)="showErrorMessage = ''"
+    >
+    {{ showErrorMessage }}
+</ngb-alert>

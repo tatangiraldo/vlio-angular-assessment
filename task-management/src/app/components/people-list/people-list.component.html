@@ -1,10 +1,16 @@
+<app-alert 
+    *ngIf="showErrorMessage"
+    (showErrorMessage)="showErrorMessage"
+    />
+
 <span 
     (click)="handlePerson()"
-    class="btn btn-primary btn-sm float-end">
+    class="badge bg-secondary pointer float-end">
     Add Person
 </span>
+
 <div *ngIf="peopleList && peopleList.length > 0; else noPeople">
-    <h4>People related</h4>
+    <h5>People related</h5>
     <table class="table" >
         <thead>
           <tr>

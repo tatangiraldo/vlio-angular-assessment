@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PeopleListComponent } from './components/people-list/people-list.component';
 import { PersonFormComponent } from './components/person-form/person-form.component';
 import { SkillListComponent } from './components/skill-list/skill-list.component';
+import { SkillInputComponent } from './skill-input/skill-input.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { SkillListComponent } from './components/skill-list/skill-list.component
     PeopleListComponent,
     PersonFormComponent,
     SkillListComponent,
+    SkillInputComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

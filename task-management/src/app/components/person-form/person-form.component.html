@@ -1,12 +1,18 @@
 <div class="modal-header">
-    <h5 class="modal-title">Person form</h5>
+    <h4 class="modal-title">Person form</h4>
     <button type="button" class="close btn btn-xs btn-default float-end" aria-label="Close" (click)="close()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 
 <div class="modal-body">
-    <form [formGroup]="personForm" (ngSubmit)="submitForm()">
+
+    <app-alert 
+      *ngIf="showErrorMessage"
+      [showErrorMessage]="showErrorMessage"
+      />
+
+    <form [formGroup]="personForm">
         <div>
           <div class="form-group">
             <label for="fullName">Full Name</label>
@@ -18,7 +24,8 @@
           </div>
           
           <hr>
-          <h4>Skills</h4>
+          <h5>Skills</h5>
+          <app-skill-input (newSkillEmit)="newSkillEmit($event)"></app-skill-input>
           <div class="mt-3">
             <app-skill-list
               [ableToRemove]="true"
@@ -28,15 +35,25 @@
           </div>
 
         </div>
+
         <button 
-          type="submit" 
-          class="btn btn-success float-end mb-3" 
+          type="btn" 
+          (click)="submitForm()"
+          class="btn btn-primary float-end mt-3 mb-3 mx-3" 
           [disabled]="personForm.invalid"
           >
           <span *ngIf="!selectedPerson">Add</span>
           <span *ngIf="selectedPerson">Update</span>
           Person
         </button>
+
+        <span 
+          class="btn btn-secondary  float-end mt-3 mb-3"
+          (click)="close()"
+          >
+          Cancel
+        </span>
+
     </form> 
 </div>
   
