@@ -4,7 +4,6 @@ import { Person } from 'src/app/models/task.model';
 @Component({
   selector: 'app-skill-list',
   templateUrl: './skill-list.component.html',
-  styleUrls: ['./skill-list.component.css']
 })
 export class SkillListComponent implements OnInit {
     

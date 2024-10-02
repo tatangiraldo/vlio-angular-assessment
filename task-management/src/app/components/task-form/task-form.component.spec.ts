@@ -37,7 +37,6 @@ describe('TaskFormComponent', () => {
   });
 
   it('this must dispatch action addTask when addTask method is executed', () => {
-    debugger;
     const newTask: Task = { 
       id: 1, 
       title: 'New Task', 

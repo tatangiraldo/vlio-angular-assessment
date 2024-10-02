@@ -7,12 +7,9 @@ import { Person, Task } from 'src/app/models/task.model';
 import { TaskService } from 'src/app/services/task.service';
 import { addTask } from 'src/app/store/task.actions';
 
-
-
 @Component({
   selector: 'app-person-form',
   templateUrl: './person-form.component.html',
-  styleUrls: ['./person-form.component.css']
 })
 export class PersonFormComponent implements OnInit{
   
@@ -79,7 +76,6 @@ export class PersonFormComponent implements OnInit{
   }
 
   newSkillEmit(newSkill: any){
-
     if(newSkill.length > 0 && !this.localSkillList.some( (skill) => skill == newSkill )){
       let tmpList = [... this.localSkillList];
       tmpList.push(newSkill);

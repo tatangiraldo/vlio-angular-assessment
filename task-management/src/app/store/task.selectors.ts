@@ -3,19 +3,19 @@ import { TaskState } from './task.reducer';
 
 export const selectTaskState = createFeatureSelector<TaskState>('taskState');
 
-// Seleccionar todas las tareas
+// Select all tasks
 export const selectAllTasks = createSelector(
   selectTaskState,
   (state: TaskState) => state.tasks
 );
 
-// Seleccionar tareas completadas
+// select completed tasks
 export const selectCompletedTasks = createSelector(
   selectAllTasks,
   tasks => tasks.filter(task => task.completed)
 );
 
-// Seleccionar tareas pendientes
+// selecec pending tasks
 export const selectPendingTasks = createSelector(
   selectAllTasks,
   tasks => tasks.filter(task => !task.completed)

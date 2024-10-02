@@ -8,15 +8,12 @@ import { addTask, updateTask } from 'src/app/store/task.actions';
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent implements OnInit {
   
   @Input() selectedTask: Task = new Task();
   taskForm: FormGroup;
   editMode: boolean = false;
-
-  //today = inject(NgbCalendar).getToday();
 
   constructor(  private fBuilder: FormBuilder, 
                 private store: Store, 
@@ -50,7 +47,6 @@ export class TaskFormComponent implements OnInit {
 
   // Execute form
   submitForm() {
-    debugger
     if (this.taskForm.valid) {
 
       const newTask: Task = {
@@ -69,11 +65,12 @@ export class TaskFormComponent implements OnInit {
       this.close();      
     }
   }
-
+  //Add task to store
   addTask(task: Task): void {
     this.store.dispatch(addTask({ task }));
   }
 
+  //update task from store
   updateTask(task: Task): void {
     this.store.dispatch(updateTask({ taskId: task.id, changes: task }));
   }
@@ -83,11 +80,11 @@ export class TaskFormComponent implements OnInit {
     this.activeModal.close();
   }
 
+  //Add or optate people from people list
   handlePeopleList(person?: any){
     if(person){
       let tmpList = [... this.selectedTask?.people ?? []]
 
-      debugger
       const personExists = tmpList?.some(p => p.id === person.id);
       if(personExists){
         tmpList = tmpList?.map(p => {

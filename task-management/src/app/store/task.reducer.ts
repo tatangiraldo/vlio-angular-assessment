@@ -10,6 +10,7 @@
   }
   
   export const initialState: TaskState = {
+    //Mock data
     tasks: [
       {
         id: Date.now(),
@@ -83,7 +84,7 @@
         if (task.id === taskId) {
           return {
             ...task,
-            people: [...task.people, person] // Agregar persona a la tarea
+            people: [...task.people, person] //Add person to task
           };
         }
         return task;
@@ -109,7 +110,7 @@
         if (task.id === taskId) {
           return {
             ...task,
-            people: task.people.filter(person => person.fullName !== personName) // Eliminar persona de la tarea
+            people: task.people.filter(person => person.fullName !== personName) // Remove person from task
           };
         }
         return task;

@@ -3,7 +3,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'app-skill-input',
   templateUrl: './skill-input.component.html',
-  styleUrls: ['./skill-input.component.css']
 })
 export class SkillInputComponent {
 
@@ -15,5 +14,4 @@ export class SkillInputComponent {
     this.newSkillEmit.emit(this.newSkill.trim().toLocaleLowerCase());
     this.newSkill = '';    
   }
-
 }

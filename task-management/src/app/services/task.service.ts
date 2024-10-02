@@ -33,7 +33,6 @@ export class TaskService {
 
   // Método para actualizar una persona en una tarea
   updatePersonInTask(taskId: number, personName: string, changes: Partial<Person>) {
-    debugger
     this.store.dispatch(updatePersonInTask({ taskId, personName, changes }));
   }
 

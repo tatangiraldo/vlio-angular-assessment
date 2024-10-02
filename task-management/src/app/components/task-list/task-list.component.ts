@@ -46,11 +46,6 @@ export class TaskListComponent {
 
   //Get tasks from api:
   getTaskApi(){
-    //  Debug line to inspect data structure
-    /*this.taskProviderService.getTasks().subscribe((data) => {
-      this.tasks$ = data;
-    });*/
-
     this.tasks$ = this.taskProviderService.getTasks();
     this.tasksFromApi = true;
   }
@@ -66,6 +61,7 @@ export class TaskListComponent {
     this.store.dispatch(deleteTask({ taskId : task.id}));
   }
 
+  //Delete task Confirmation
   openConfirm(task: Task) {
 
     if(this.tasksFromApi){
@@ -78,7 +74,6 @@ export class TaskListComponent {
 
     modalRef.result.then(
       (result) => {
-        debugger
         if (result === 'confirm') {
           this.deleteTask(task);
         }
@@ -101,6 +96,7 @@ export class TaskListComponent {
     };
   }
 
+  //FILTER TASKS BY STATUS
   filterByStatus(state: any) {
     if(state.length > 0)
       this.stateSelected = state;
