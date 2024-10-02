@@ -16,6 +16,7 @@ import { SkillListComponent } from './components/skill-list/skill-list.component
 import { SkillInputComponent } from './skill-input/skill-input.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,10 +36,11 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
     ReactiveFormsModule,
     StoreModule.forRoot({ taskState: taskReducer }),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retiene los últimos 25 estados
+      maxAge: 25, // savee 25 lastest states
     }),
     NgbModule,
-    FormsModule
+    FormsModule,
+    NgbDatepickerModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

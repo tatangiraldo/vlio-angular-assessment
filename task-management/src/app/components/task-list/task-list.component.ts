@@ -8,7 +8,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
-
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',

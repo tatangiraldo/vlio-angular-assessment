@@ -1,11 +1,9 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
-import { Person, Task } from 'src/app/models/task.model';
+import { Task } from 'src/app/models/task.model';
 import { addTask, updateTask } from 'src/app/store/task.actions';
-
-
 
 @Component({
   selector: 'app-task-form',
@@ -53,8 +51,8 @@ export class TaskFormComponent implements OnInit {
   // Execute form
   submitForm() {
     debugger
-
     if (this.taskForm.valid) {
+
       const newTask: Task = {
         ...this.taskForm.value,
         id: this.selectedTask.id,
@@ -63,17 +61,23 @@ export class TaskFormComponent implements OnInit {
       };
 
       if( this.editMode ){
-        this.store.dispatch(updateTask({ taskId: newTask.id, changes: newTask }));
+        this.updateTask(newTask);
       }else{
-        this.store.dispatch(addTask({ task: newTask }));
+        this.addTask(newTask);
       }
-
       this.taskForm.reset();
-      this.close();
-      
+      this.close();      
     }
   }
 
+  addTask(task: Task): void {
+    this.store.dispatch(addTask({ task }));
+  }
+
+  updateTask(task: Task): void {
+    this.store.dispatch(updateTask({ taskId: task.id, changes: task }));
+  }
+  
   //Close modal
   close() {
     this.activeModal.close();
