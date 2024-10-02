@@ -3,6 +3,9 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { TaskListComponent } from './task-list.component';
 import { deleteTask } from '../../store/task.actions';
 import { Task } from 'src/app/models/task.model';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Importa NgbModule
 
 describe('TaskListComponent', () => {
   let component: TaskListComponent;
@@ -13,6 +16,7 @@ describe('TaskListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TaskListComponent],
+      imports: [HttpClientModule, NgbModule],
       providers: [provideMockStore({ initialState })]
     }).compileComponents();
 
