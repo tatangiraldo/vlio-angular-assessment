@@ -15,6 +15,7 @@ import { PersonFormComponent } from './components/person-form/person-form.compon
 import { SkillListComponent } from './components/skill-list/skill-list.component';
 import { SkillInputComponent } from './skill-input/skill-input.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AlertComponent } from './components/alert/alert.component';
     SkillListComponent,
     SkillInputComponent,
     AlertComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     BrowserModule,

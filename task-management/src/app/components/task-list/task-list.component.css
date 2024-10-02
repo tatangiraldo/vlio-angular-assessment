@@ -1,5 +1,5 @@
-.list-group-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.form-select{
+  width: 150px;
+  height: 30px;
+  padding: 3px 10px;
+}

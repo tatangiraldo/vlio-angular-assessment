@@ -25,7 +25,7 @@ export class TaskFormComponent implements OnInit {
                 public activeModal: NgbActiveModal ) {
   
     this.taskForm = this.fBuilder.group({
-      taskName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
+      taskName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
       dueDate: ['', Validators.required],
     });
 

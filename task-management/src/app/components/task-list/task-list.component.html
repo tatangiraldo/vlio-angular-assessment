@@ -1,8 +1,18 @@
 <div class="container mt-4">
-  <h2>Listado de Tareas</h2>
+  <h2>Task List</h2>
   <button class="btn btn-secondary btn-sm mb-3 float-end" (click)="openNewTaskForm()">
-    Nueva Tarea
+    New Task
   </button>
+
+  <select 
+    (change)="onChange($event)"
+    class="form-select mb-3 float-end" 
+    aria-label="Filter tasks">
+    <option selected>Filter Tasks</option>
+    <option value={{states.completed}}>Completed</option>
+    <option value={{states.pending}}>Pending</option>
+    <option value={{states.all}}>See All</option>
+  </select>
 
   <table class="table table-bordered">
     <thead>
@@ -15,23 +25,27 @@
     <tbody>
       <tr *ngFor="let task of tasks$ | async">
         <td>
-          <span class="pointer" [ngClass]="{ 'text-decoration-line-through': task.completed }" (click)="openNewTaskForm(task)">
+          <span
+              class="pointer" 
+              [ngClass]="{ 'text-decoration-line-through': task.completed }" 
+              (click)="openNewTaskForm(task)"
+              >
             {{ task.taskName | titlecase }} ({{ task.dueDate.year }}-{{task.dueDate.month}}-{{task.dueDate.day}})
           </span>
         </td>
         <td>
           <span
-            [ngClass]="{ 'btn-warning': !task.completed }"
-            class="btn btn-success btn-sm me-2"
+            [ngClass]="{ 'badge bg-warning text-white': !task.completed }"
+            class="text-success me-2 pointer"
             (click)="toggleTaskCompletion(task)"
           >
             {{ task.completed ? "Completed" : "Pending" }}
           </span>
         </td>
         <td>
-          <button class="btn btn-danger btn-sm" (click)="deleteTask(task.id)">
+          <span class="badge bg-danger pointer" (click)="openConfirm(task)">
             Delete
-          </button>
+          </span>
         </td>
       </tr>
     </tbody>
